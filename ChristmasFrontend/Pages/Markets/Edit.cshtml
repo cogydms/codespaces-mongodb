@@ -1,0 +1,63 @@
+@page
+@model ChristmasFrontend.Pages.Markets.EditModel
+@{
+    ViewData["Title"] = "Update Market";
+}
+
+<div class="container mt-4">
+    <h1>@ViewData["Title"]</h1>
+
+    @if (Model.Market == null)
+    {
+        <div class="alert alert-warning">Market Not Found.</div>
+        <a asp-page="/Index" class="btn btn-secondary">Back to Home</a>
+    }
+    else
+    {
+        <div class="card">
+            <div class="card-body">
+                <form method="post" asp-route-id="@Model.Market.Id">
+                <input type="hidden" asp-for="Market.Id" />
+                    <div class="mb-3">
+                        <label asp-for="Market.Name" class="form-label">Name</label>
+                        <input asp-for="Market.Name" class="form-control" />
+                        <span asp-validation-for="Market.Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Market.Description" class="form-label">Description</label>
+                        <textarea asp-for="Market.Description" class="form-control"></textarea>
+                        <span asp-validation-for="Market.Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Location</label>
+                        <input class="form-control" value="@Model.Location.Address, @Model.Location.City, @Model.Location.Country" readonly />
+                    <input type="hidden" asp-for="Market.Location_Id" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Market.StartDate" class="form-label">Start Date</label>
+                        <input asp-for="Market.StartDate" class="form-control" type="date" />
+                        <span asp-validation-for="Market.StartDate" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Market.EndDate" class="form-label">End Date</label>
+                        <input asp-for="Market.EndDate" class="form-control" type="date" />
+                        <span asp-validation-for="Market.EndDate" class="text-danger"></span>
+                    </div>
+
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-warning">Save</button>
+                        <a asp-page="/Index" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

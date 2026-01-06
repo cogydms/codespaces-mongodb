@@ -1,0 +1,40 @@
+@page
+@model ChristmasFrontend.Pages.Markets.DeleteModel
+@{
+    ViewData["Title"] = "Delete Market";
+}
+
+<div class="container mt-4">
+    <h1>@ViewData["Title"]</h1>
+
+    @if (Model.Market == null)
+    {
+        <div class="alert alert-warning">Market not found.</div>
+        <a asp-page="/Index" class="btn btn-secondary">Back to list</a>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            <h4 class="alert-heading">Confirm Deletion</h4>
+            <p>Are you sure you want to delete this market? This action cannot be undone.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <p><strong>Name:</strong> @Model.Market.Name</p>
+                <p><strong>Description:</strong> @Model.Market.Description</p>
+                <p><strong>Location Id:</strong> @Model.Market.Location_Id</p>
+                <p><strong>Start Date:</strong> @Model.Market.StartDate.ToString("yyyy-MM-dd")</p>
+                <p><strong>End Date:</strong> @Model.Market.EndDate.ToString("yyyy-MM-dd")</p>
+
+                <form method="post">
+                    <input type="hidden" asp-for="Market.Id" />
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <a asp-page="/Index" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
+</div>

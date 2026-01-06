@@ -1,0 +1,56 @@
+@page "{id}"
+@model ChristmasFrontend.Pages.Markets.DetailsModel
+@{
+    ViewData["Title"] = "Market Details";
+}
+
+<div class="container mt-4">
+    <h1>@ViewData["Title"]</h1>
+
+    @if (Model.Market == null)
+    {
+        <div class="alert alert-warning">Market Not Found.</div>
+        <a asp-page="/Index" class="btn btn-secondary">Back to home</a>
+    }
+    else
+    {
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">Name</dt>
+                    <dd class="col-sm-9">🎄 <strong>@Model.Market.Name</strong></dd>
+
+                    <dt class="col-sm-3">Location ID</dt>
+                    <dd class="col-sm-9">@Model.Market.Location_Id</dd>
+
+                    <dt class="col-sm-3">Description</dt>
+                    <dd class="col-sm-9">@Model.Market.Description</dd>
+
+                    <dt class="col-sm-3">Start Date</dt>
+                    <dd class="col-sm-9">
+                        <span class="highlight">@Model.Market.StartDate.ToString("yyyy-MM-dd")
+                    </dd>
+
+                    <dt class="col-sm-3">End Date</dt>
+                    <dd class="col-sm-9">
+                        <span class="highlight">@Model.Market.EndDate.ToString("yyyy-MM-dd")
+                    </dd>
+                    
+                    <dt class="col-sm-3">Location</dt>
+                    <dd class="col-sm-9">📍 @Model.Location.Address, @Model.Location.City, @Model.Location.Country
+                    <br />
+                        <a href="@Model.Location.GoogleMapUrl" target="_blank">View on Google Maps</a>
+                    </dd>
+
+                </dl>
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <a asp-page="./Edit" asp-route-id="@Model.Market.Id" class="btn btn-info"> Edit </a>
+            <a asp-page="./Delete" asp-route-id="@Model.Market.Id" class="btn btn-danger"> Delete </a>
+            <a asp-page="/Index" class="btn btn-secondary"> Back to List </a>
+        </div>
+        
+    }
+</div>

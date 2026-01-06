@@ -1,0 +1,52 @@
+@page
+@model ChristmasFrontend.Pages.Markets.CreateModel
+@{
+    ViewData["Title"] = "Adding New Market";
+}
+
+<div class="container mt-4">
+    <h1>@ViewData["Title"]</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <form method="post">
+                <div class="mb-3">
+                    <label asp-for="Market.Name" class="form-label">Name</label>
+                    <input asp-for="Market.Name" class="form-control" />
+                    <span asp-validation-for="Market.Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Market.Description" class="form-label">Description</label>
+                    <textarea asp-for="Market.Description" class="form-control"></textarea>
+                    <span asp-validation-for="Market.Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Market.Location_Id" class="form-label">Location Id</label>
+                    <input asp-for="Market.Location_Id" class="form-control" />
+                    <span asp-validation-for="Market.Location_Id" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Market.StartDate" class="form-label">Start Date</label>
+                    <input asp-for="Market.StartDate" class="form-control" type="date" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Market.EndDate" class="form-label">End Date</label>
+                    <input asp-for="Market.EndDate" class="form-control" type="date" />
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-warning">Save</button>
+                    <a asp-page="/Index" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
